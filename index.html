@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemma Villarroel – Ingeniera Informática & IA</title>
+  <meta name="description" content="Ingeniera informática especializada en IA, automatización e integración de sistemas. León, España." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-900: #0d2137;
+      --blue-800: #1a3a5c;
+      --blue-600: #2563a8;
+      --blue-400: #4a90d9;
+      --blue-200: #a8cdef;
+      --blue-100: #dceefb;
+      --blue-50:  #f0f7ff;
+      --gray-900: #111827;
+      --gray-700: #374151;
+      --gray-500: #6b7280;
+      --gray-300: #d1d5db;
+      --gray-100: #f3f4f6;
+      --white:    #ffffff;
+      --accent:   #00c8a0;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--gray-900);
+      color: var(--gray-700);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13, 33, 55, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--blue-200);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ── HERO ─────────────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      background: linear-gradient(135deg, var(--blue-900) 0%, #0a1929 60%, #071420 100%);
+      padding: 80px 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(37,99,168,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 900px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      background: rgba(0,200,160,0.12);
+      border: 1px solid rgba(0,200,160,0.25);
+      padding: 0.3em 0.9em;
+      border-radius: 2em;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.06em;
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .hero-name span { color: var(--blue-400); }
+    .hero-title {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--blue-200);
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+    .hero-desc {
+      max-width: 600px;
+      color: rgba(168,205,239,0.75);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .hero-contact {
+      display: flex; flex-wrap: wrap; gap: 0.9rem; margin-bottom: 2.5rem;
+    }
+    .contact-chip {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-size: 0.82rem; color: var(--blue-200);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.35em 0.8em; border-radius: 2em;
+      text-decoration: none; transition: background 0.2s, border-color 0.2s;
+    }
+    .contact-chip:hover { background: rgba(255,255,255,0.1); border-color: var(--blue-400); color: var(--white); }
+    .contact-chip svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--blue-600);
+      color: var(--white);
+      padding: 0.7em 1.6em;
+      border-radius: 0.4em;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: var(--blue-400); transform: translateY(-1px); }
+
+    /* ── SECTION SHELL ────────────────────────────────────────────────────── */
+    section { padding: 5rem 2rem; }
+    section:nth-child(even) { background: var(--gray-100); }
+    section:nth-child(odd):not(#hero) { background: var(--white); }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--blue-600);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--blue-800);
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--blue-100);
+    }
+
+    /* ── SKILLS ───────────────────────────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-top: 3px solid var(--blue-600);
+      border-radius: 0.5rem;
+      padding: 1.4rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { box-shadow: 0 4px 20px rgba(37,99,168,0.12); transform: translateY(-2px); }
+    .skill-card-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--blue-800);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      background: var(--blue-50);
+      color: var(--blue-600);
+      border: 1px solid var(--blue-200);
+      padding: 0.2em 0.6em;
+      border-radius: 0.3em;
+    }
+
+    /* ── STRENGTHS ────────────────────────────────────────────────────────── */
+    .strengths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .strength-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 1rem;
+      background: var(--blue-50);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 0.4rem 0.4rem 0;
+    }
+    .strength-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .strength-text { font-size: 0.88rem; font-weight: 500; color: var(--gray-700); }
+
+    /* ── EXPERIENCE ───────────────────────────────────────────────────────── */
+    .exp-section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue-600);
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--blue-100);
+    }
+    .exp-section-title:first-of-type { margin-top: 0; }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid; grid-template-columns: 140px 1fr; gap: 0 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--gray-300);
+      position: relative;
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-meta { text-align: right; padding-top: 0.1rem; }
+    .exp-period {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--blue-600);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .exp-location {
+      font-size: 0.72rem;
+      color: var(--gray-500);
+      margin-top: 0.2rem;
+    }
+    .exp-role { font-size: 1rem; font-weight: 700; color: var(--blue-800); margin-bottom: 0.15rem; }
+    .exp-company { font-size: 0.88rem; font-weight: 600; color: var(--blue-600); margin-bottom: 0.6rem; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.88rem;
+      color: var(--gray-700);
+      line-height: 1.55;
+      margin-bottom: 0.25rem;
+    }
+    .exp-bullets li::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--blue-400);
+      font-weight: 700;
+    }
+
+    /* ── EDUCATION ────────────────────────────────────────────────────────── */
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+    .edu-card {
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      border-radius: 0.5rem;
+      padding: 1.4rem;
+    }
+    .edu-degree { font-weight: 700; color: var(--blue-800); margin-bottom: 0.2rem; font-size: 0.92rem; }
+    .edu-school { font-size: 0.82rem; color: var(--blue-600); font-weight: 500; }
+    .edu-year { font-family: var(--font-mono); font-size: 0.72rem; color: var(--gray-500); margin-top: 0.3rem; }
+
+    /* ── EXTRA ────────────────────────────────────────────────────────────── */
+    .extra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    @media (max-width: 640px) { .extra-grid { grid-template-columns: 1fr; } }
+    .extra-block h3 { font-size: 0.92rem; font-weight: 700; color: var(--blue-800); margin-bottom: 0.8rem; }
+    .extra-block ul { list-style: none; }
+    .extra-block li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--gray-300);
+      font-size: 0.88rem;
+      color: var(--gray-700);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .extra-block li:last-child { border-bottom: none; }
+    .extra-block li::before { content: '›'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* ── FOOTER ───────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--blue-900);
+      color: var(--blue-200);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-meta { text-align: left; margin-bottom: 0.3rem; }
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .nav-links li:nth-child(n+4) { display: none; }
+    }
+
+    /* ── SCROLL REVEAL ─────────────────────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">gemma.dev</div>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#formacion">Formación</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">// Ingeniería · IA · Automatización</div>
+    <h1 class="hero-name">Gemma<br><span>Villarroel</span> Fernández</h1>
+    <p class="hero-title">Ingeniera Informática · IA &amp; Automatización · Desarrollo Software</p>
+    <p class="hero-desc">
+      Más de diez años como analista-programadora, actualmente especializada en soluciones de
+      Inteligencia Artificial, integración de APIs y automatización de procesos. Sólida base
+      técnica, visión de negocio y aprendizaje continuo.
+    </p>
+    <div class="hero-contact">
+      <a class="contact-chip" href="mailto:gemmavillarroel@gmail.com">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        gemmavillarroel@gmail.com
+      </a>
+      <a class="contact-chip" href="tel:+34653489050">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        653 489 050
+      </a>
+      <span class="contact-chip">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        León, España
+      </span>
+      <span class="contact-chip">🚗 Carné B · Vehículo propio</span>
+    </div>
+    <a class="hero-cta" href="mailto:gemmavillarroel@gmail.com">
+      Contactar
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="section-inner reveal">
+    <div class="section-label">// perfil</div>
+    <h2 class="section-title">Sobre mí</h2>
+    <p style="max-width:720px; color: var(--gray-700); font-size:1rem; line-height:1.8; margin-bottom:2rem;">
+      Ingeniera informática con más de diez años de experiencia como analista-programadora en entornos
+      empresariales, actualmente orientada al desarrollo de soluciones basadas en <strong>Inteligencia Artificial</strong>,
+      integración de APIs y automatización de procesos con herramientas como <strong>n8n</strong> y <strong>Retell AI</strong>.
+    </p>
+    <p style="max-width:720px; color: var(--gray-700); font-size:1rem; line-height:1.8;">
+      Combino una sólida base técnica con visión de negocio, liderazgo de equipos y orientación a resultados.
+      Destaco especialmente por mi capacidad de <strong>adaptación y autoaprendizaje rápido</strong> ante nuevas
+      herramientas, lenguajes y entornos tecnológicos.
+    </p>
+    <div class="strengths-grid" style="margin-top:2rem;">
+      <div class="strength-item"><span class="strength-icon">⚡</span><span class="strength-text">Adaptación y autoaprendizaje continuo</span></div>
+      <div class="strength-item"><span class="strength-icon">🎯</span><span class="strength-text">Liderazgo y coordinación de equipos</span></div>
+      <div class="strength-item"><span class="strength-icon">🔍</span><span class="strength-text">Análisis y resolución de problemas</span></div>
+      <div class="strength-item"><span class="strength-icon">🤝</span><span class="strength-text">Comunicación y trato con cliente</span></div>
+      <div class="strength-item"><span class="strength-icon">📊</span><span class="strength-text">Visión de negocio y orientación a resultados</span></div>
+      <div class="strength-item"><span class="strength-icon">🏆</span><span class="strength-text">Disciplina y constancia (9× Campeona de C&L de Squash)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="section-inner reveal">
+    <div class="section-label">// stack técnico</div>
+    <h2 class="section-title">Habilidades</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Lenguajes</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">ASP</span>
+          <span class="skill-tag">VBA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Bases de Datos</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">Access</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">IA & Automatización</div>
+        <div class="skill-tags">
+          <span class="skill-tag">n8n</span>
+          <span class="skill-tag">Retell AI</span>
+          <span class="skill-tag">APIs REST</span>
+          <span class="skill-tag">Agentes IA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Herramientas & DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Cloud</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Ticketing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Metodologías</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Agile / Scrum</span>
+          <span class="skill-tag">Testing funcional</span>
+          <span class="skill-tag">Análisis de requisitos</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Software Empresarial</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SAGE</span>
+          <span class="skill-tag">Gestión empresarial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <div class="section-inner reveal">
+    <div class="section-label">// trayectoria</div>
+    <h2 class="section-title">Experiencia</h2>
+
+    <div class="exp-section-title">Experiencia Tecnológica</div>
+    <div class="timeline">
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">2026 – Actualidad</div>
+          <div class="exp-location">León, España</div>
+        </div>
+        <div>
+          <div class="exp-role">Desarrolladora Independiente – IA &amp; Automatización</div>
+          <div class="exp-company">Actividad propia (Autónoma)</div>
+          <ul class="exp-bullets">
+            <li>Diseño y desarrollo de soluciones basadas en Inteligencia Artificial e integración de herramientas digitales.</li>
+            <li>Construcción de flujos automatizados con n8n e integración de APIs entre plataformas.</li>
+            <li>Implementación de agentes inteligentes con Retell AI y automatización de procesos empresariales.</li>
+            <li>Análisis de procesos de cliente para detectar oportunidades de mejora y eficiencia operativa.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">2005 – 2015</div>
+          <div class="exp-location">León, España</div>
+        </div>
+        <div>
+          <div class="exp-role">Analista / Programadora</div>
+          <div class="exp-company">ALCATIC</div>
+          <ul class="exp-bullets">
+            <li>Desarrollo de aplicaciones sobre SAGE, herramientas web y automatizaciones en VBA.</li>
+            <li>Análisis de necesidades empresariales y definición de requisitos funcionales.</li>
+            <li>Adaptación, mantenimiento y evolución continua de aplicaciones.</li>
+            <li>Trato directo con clientes para proponer soluciones tecnológicas ajustadas a sus procesos.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">2003 – 2005</div>
+          <div class="exp-location">León, España</div>
+        </div>
+        <div>
+          <div class="exp-role">Programadora Informática</div>
+          <div class="exp-company">ACTIVE</div>
+          <ul class="exp-bullets">
+            <li>Desarrollo de aplicaciones de gestión en Access 2000/XP y páginas web en HTML y ASP.</li>
+            <li>Mantenimiento y adaptación de aplicaciones para cliente final.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">2005 – 2006</div>
+          <div class="exp-location">León, España</div>
+        </div>
+        <div>
+          <div class="exp-role">Auxiliar Administrativo / Programadora</div>
+          <div class="exp-company">PROCALE S.A.</div>
+          <ul class="exp-bullets">
+            <li>Gestión de proveedores y clientes.</li>
+            <li>Desarrollo de aplicación para control de pagos y mantenimiento informático.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">Abr – Jun 2002</div>
+          <div class="exp-location">León, España</div>
+        </div>
+        <div>
+          <div class="exp-role">Programadora en Prácticas</div>
+          <div class="exp-company">Telecomunicaciones Merino S.A.</div>
+          <ul class="exp-bullets">
+            <li>Desarrollo de una aplicación en ASP para distribución a través de internet.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-section-title">Liderazgo, Organización y Gestión</div>
+    <p style="font-size:0.85rem; color:var(--gray-500); margin-bottom:1.2rem; font-style:italic;">
+      Etapa de alta responsabilidad con foco en coordinación de equipos, planificación estratégica,
+      comunicación pública y toma de decisiones. Refuerza competencias transversales clave para entornos tecnológicos.
+    </p>
+    <div class="timeline">
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">2020 – 2025</div>
+          <div class="exp-location">Castilla y León</div>
+        </div>
+        <div>
+          <div class="exp-role">Coordinadora Regional</div>
+          <div class="exp-company">Ciudadanos – Castilla y León</div>
+          <ul class="exp-bullets">
+            <li>Coordinación de equipos y estructuras territoriales en la comunidad autónoma.</li>
+            <li>Planificación, seguimiento y ejecución de acciones estratégicas.</li>
+            <li>Gestión de comunicación interna y externa e interlocución con agentes clave.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">2015 – 2023</div>
+          <div class="exp-location">León</div>
+        </div>
+        <div>
+          <div class="exp-role">Concejal Portavoz</div>
+          <div class="exp-company">Ayuntamiento de León</div>
+          <ul class="exp-bullets">
+            <li>Análisis de expedientes, informes y documentación administrativa.</li>
+            <li>Intervención en plenos y comisiones; gestión de propuestas municipales.</li>
+            <li>Coordinación de equipo y relación con entidades ciudadanas y medios.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">2019 – 2023</div>
+          <div class="exp-location">León</div>
+        </div>
+        <div>
+          <div class="exp-role">Diputada Provincial</div>
+          <div class="exp-company">Diputación de León</div>
+          <ul class="exp-bullets">
+            <li>Participación en comisiones y órganos de decisión provincial.</li>
+            <li>Análisis de proyectos, presupuestos y documentación institucional.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">2019 – 2023</div>
+          <div class="exp-location">España</div>
+        </div>
+        <div>
+          <div class="exp-role">Miembro de la Ejecutiva Nacional</div>
+          <div class="exp-company">Ciudadanos</div>
+          <ul class="exp-bullets">
+            <li>Participación en órganos de dirección y análisis estratégico nacional.</li>
+            <li>Representación institucional y comunicación pública.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMACIÓN -->
+<section id="formacion">
+  <div class="section-inner reveal">
+    <div class="section-label">// educación</div>
+    <h2 class="section-title">Formación Académica</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">Grado en Ingeniería Informática</div>
+        <div class="edu-school">Universidad de León</div>
+        <div class="edu-year">2017 – 2025</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Técnico Superior en Sistemas de Telecomunicaciones e Informáticos</div>
+        <div class="edu-school">IES Giner de los Ríos</div>
+        <div class="edu-year">2002 – 2004</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Técnico Superior en Desarrollo de Aplicaciones Informáticas</div>
+        <div class="edu-school">Centro María Auxiliadora, León</div>
+        <div class="edu-year">2000 – 2002</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRA -->
+<section id="extra">
+  <div class="section-inner reveal">
+    <div class="section-label">// más sobre mí</div>
+    <h2 class="section-title">Idiomas y Logros</h2>
+    <div class="extra-grid">
+      <div class="extra-block">
+        <h3>🌐 Idiomas</h3>
+        <ul>
+          <li>Español – Nativo</li>
+          <li>Inglés – B2 comprensión lectora / B1 resto de destrezas</li>
+        </ul>
+      </div>
+      <div class="extra-block">
+        <h3>🏅 Logros deportivos</h3>
+        <ul>
+          <li>9× Campeona de Castilla y León de Squash (2007 – 2016)</li>
+          <li>Top-10 de España en Squash (2011 – 2012)</li>
+          <li>Disciplina, constancia y superación como valores personales</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="background: var(--blue-900) !important; color: var(--blue-100);">
+  <div class="section-inner reveal" style="text-align:center;">
+    <div class="section-label" style="color: var(--accent);">// contacto</div>
+    <h2 style="font-size:clamp(1.5rem,3vw,2rem); font-weight:700; color:var(--white); margin-bottom:1rem; padding-bottom:0; border:none;">
+      ¿Hablamos?
+    </h2>
+    <p style="color:var(--blue-200); max-width:480px; margin:0 auto 2rem; font-size:0.95rem; line-height:1.7;">
+      Disponible para proyectos tecnológicos en León (presencial/híbrido) y proyectos remotos
+      en sectores de alto impacto: IA, defensa, movilidad y tecnologías digitales avanzadas.
+    </p>
+    <a class="hero-cta" href="mailto:gemmavillarroel@gmail.com" style="margin:0 auto;">
+      gemmavillarroel@gmail.com
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Gemma Villarroel Fernández · León, España · <a href="mailto:gemmavillarroel@gmail.com">gemmavillarroel@gmail.com</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }});
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
